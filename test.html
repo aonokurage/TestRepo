@@ -1,0 +1,565 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TortoiseGit の基礎勉強 ~ TortoiseGit によるバージョン管理 ~ &mdash; バージョン管理システム入門(初心者向け)</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+    <link rel="top" title="バージョン管理システム入門(初心者向け)" href="index.html" />
+    <link rel="next" title="Git Extensions の基礎勉強 ~ Git Extensions によるバージョン管理 ~" href="learning_git_extensions.html" />
+    <link rel="prev" title="Git の基礎勉強 ~ Git によるバージョン管理 ~" href="learning_git_firststep.html" /> 
+  </head>
+  <body>
+  <!-- 1st facebook code -->
+  <div id="fb-root"></div>
+
+<img src="/img/2.jpg">
+<div id="HeaderArea">
+<a href="/index.html"><img src="_static/head_logo.png" width="284" height="86" alt="tracpath" id="Logo" /></a>
+
+<ul>
+<li id="Left"><a href="https://support.tracpath.com/form/contact.html">お問い合せ</a></li>
+<li><a href="https://secure.tracpath.com/signup/free">アカウント作成</a></li>
+<li><a href="http://www.opengroove.com/about-us" target="blank">運営会社</a></li>
+<li><a href="http://blog.tracpath.com/">ブログ</a></li>
+</ul>
+<p>
+<span id="alertbox">チュートリアル</span>
+</div>
+
+
+
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="learning_git_extensions.html" title="Git Extensions の基礎勉強 ~ Git Extensions によるバージョン管理 ~"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="learning_git_firststep.html" title="Git の基礎勉強 ~ Git によるバージョン管理 ~"
+             accesskey="P">前へ</a> |</li>
+        <li><a href="index.html">バージョン管理システム入門(初心者向け)</a> &raquo;</li> 
+      </ul>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+
+<div class="sns_area">
+<!-- ソーシャルボタン スタート -->
+<ul class="social-button">
+<li>
+<!-- 2nd facebook code -->
+<div class="fb-like" data-href="http://tracpath.com/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+<li>
+	<!-- Place this tag where you want the +1 button to render. -->
+	<div class="g-plusone" data-size="medium" data-annotation="none"></div>
+</li>
+
+<li>
+  <a href="http://b.hatena.ne.jp/entry/http://tracpath.com/" class="hatena-bookmark-button" data-hatena-bookmark-title="エンタープライズ向けバージョン管理サービス" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+</li>
+<li>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="tracpath" data-lang="ja" data-count="none">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</li>
+</ul>
+<!-- ソーシャルボタン エンド -->
+</div>
+
+<div class="section" id="tortoisegit-tortoisegit">
+<h1>TortoiseGit の基礎勉強 ~ TortoiseGit によるバージョン管理 ~<a class="headerlink" href="#tortoisegit-tortoisegit" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ようこそ、分散バージョン管理「Git(ギット)」のGUIクライアントである「TortoiseGit」の基礎勉強です。TortoiseGitは、GitのクライアントツールでWindowsのシェルエクステンションとして機能します。専用のGUIを備えており、CUI の Git より、直感的で簡単に扱うことが出来ます。Subversion クライアント用の「TortoiseSVN」を利用したことがある方は似たような使い勝手を提供しているので比較的簡単に使うことが出来ます。</p>
+<p>「TortoiseGit の基礎勉強」では、Windows 7 環境で TortoiseGit の基本的な使い方をご自身のマシンで動作させます。 TortoiseGit はこのチュートリアルで説明している以外にも多くの機能を備えたパワフルなバージョン管理システムです。使いこなすためには文章を読むだけではなく実際に試すことがとても重要です。</p>
+<p>このドキュメントにならってチュートリアルを実行することで、基本的な TortoiseGit の使い方を学習することができます。</p>
+<p>このチュートリアルでは、TortoiseGit の日本語版（TortoiseGit-1.8.6.0）を利用して進めていきます。</p>
+</div>
+<div class="section" id="id2">
+<h2>レッスン 1. インストール<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>最初に TortoiseGit が利用できるように環境を作ります。TortoiseGit を Windows 環境で動作させるために必要なソフトウェアがあります。Windows向けのGitである「msysgit」をダウンロードしてください。TortoiseGitを利用するために必須ですので事前にインストールしておく必要があります。このチュートリアルでは日本語化した TortoiseGit を利用するので3つのファイルをダウンロードしました。</p>
+<ul class="simple">
+<li>msysgit [Git-1.8.4-preview20130916.exe]</li>
+<li>TortoiseGit [TortoiseGit-1.8.6.0-32bit.msi]</li>
+<li>TortoiseGit 日本語言語パック [TortoiseGit-LanguagePack-1.8.6.0-32bit-ja.msi]</li>
+</ul>
+<a class="reference internal image-reference" href="_images/tgit01.png"><img alt="_images/tgit01.png" src="_images/tgit01.png" style="width: 537.6px; height: 341.6px;" /></a>
+<div class="section" id="msysgit">
+<h3>msysgit<a class="headerlink" href="#msysgit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://code.google.com/p/msysgit/downloads/list">msysgit</a> からダウンロードします。2013年12月4日時点で最新版である「<a class="reference external" href="https://code.google.com/p/msysgit/downloads/detail?name=Git-1.8.4-preview20130916.exe&amp;can=2&amp;q=">Git-1.8.4-preview20130916.exe</a> 」を利用します。</p>
+</div>
+<div class="section" id="tortoisegit">
+<h3>TortoiseGit<a class="headerlink" href="#tortoisegit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>公式サイトの <a class="reference external" href="https://code.google.com/p/tortoisegit/">TortoiseGit</a> の <a class="reference external" href="https://code.google.com/p/tortoisegit/wiki/Download">ダウンロード</a> から2013年12月4日時点で最新版である「<a class="reference external" href="http://download.tortoisegit.org/tgit/1.8.6.0/TortoiseGit-1.8.6.0-32bit.msi">TortoiseGit-1.8.6.0-32bit.msi</a> 」を利用します。32bit版と64bit版があるのでご自身の環境に合わせてダウンロードして下さい。</p>
+</div>
+<div class="section" id="id6">
+<h3>TortoiseGit 日本語言語パック<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>公式サイトの <a class="reference external" href="https://code.google.com/p/tortoisegit/">TortoiseGit</a> の <a class="reference external" href="https://code.google.com/p/tortoisegit/wiki/Download">ダウンロード</a> から2013年12月4日時点で最新版である「<a class="reference external" href="http://download.tortoisegit.org/tgit/1.8.6.0/TortoiseGit-LanguagePack-1.8.6.0-32bit-ja.msi">TortoiseGit-LanguagePack-1.8.6.0-32bit-ja.msi</a> 」を利用します。32bit版と64bit版があるのでご自身の環境に合わせてダウンロードして下さい。</p>
+</div>
+<div class="section" id="id9">
+<h3>msysgit のインストール<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<a class="reference internal image-reference" href="_images/tgit02.png"><img alt="_images/tgit02.png" src="_images/tgit02.png" style="width: 402.4px; height: 308.0px;" /></a>
+<p>Windows版Gitである、msysgit のインストールは「Next」を押下すれば問題ありません。
+いくつか選択肢が表示される場合がありますが、ここでは何も変更せずに「Next」を押下して下さい。</p>
+<a class="reference internal image-reference" href="_images/tgit03.png"><img alt="_images/tgit03.png" src="_images/tgit03.png" style="width: 401.6px; height: 308.0px;" /></a>
+<a class="reference internal image-reference" href="_images/tgit04.png"><img alt="_images/tgit04.png" src="_images/tgit04.png" style="width: 401.6px; height: 309.6px;" /></a>
+</div>
+<div class="section" id="id10">
+<h3>msysgit の環境設定<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>スタートメニューから Git Bash を実行します。これから Git の設定を行います。設定はコマンドラインで実行します。環境設定の内容については説明しませんが Git を利用するために必要な手順として以下を実行します。</p>
+<p>Git はコミット時にユーザ名とメールアドレスを記録します。この設定は必須です。自分が利用するメールアドレスと名前を設定します。</p>
+<blockquote>
+<div><ul class="simple">
+<li>user.email ... コミット時に利用されるメールアドレス</li>
+<li>user.name  ... コミット時に利用される名前</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python"><pre>git config -–global user.email "メールアドレス"
+git config -–global user.name “あなたの名前”</pre>
+</div>
+<p>日本語の文字化け対策で設定します。</p>
+<div class="highlight-python"><pre>git config -–global core.quotepath false</pre>
+</div>
+<p>改行コードを Git が自動変換することを無効にします。</p>
+<div class="highlight-python"><pre>git config -–global core.autocrlf false</pre>
+</div>
+<p>push コマンド時にブランチ名やタグ名を指定しない場合の標準動作を設定します。（安全のため）</p>
+<div class="highlight-python"><pre>git config -–global push.default upstream</pre>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>TortoiseGit のインストール<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>GitのGUIクライアントである TortoiseGit のインストールを開始します。</p>
+<a class="reference internal image-reference" href="_images/tgit05.png"><img alt="_images/tgit05.png" src="_images/tgit05.png" style="width: 398.4px; height: 308.8px;" /></a>
+<p>インストールでは「Next」を押下すれば問題ありません。
+いくつか選択肢が表示される場合がありますが、ここでは何も変更せずに「Next」を押下して下さい。</p>
+<a class="reference internal image-reference" href="_images/tgit06.png"><img alt="_images/tgit06.png" src="_images/tgit06.png" style="width: 396.8px; height: 308.8px;" /></a>
+</div>
+<div class="section" id="id12">
+<h3>TortoiseGit 日本語言語パックのインストール<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<a class="reference internal image-reference" href="_images/tgit07.png"><img alt="_images/tgit07.png" src="_images/tgit07.png" style="width: 397.6px; height: 308.0px;" /></a>
+<p>インストーラーを実行するだけでインストール作業は完了です。
+日本語言語パックのインストール後に設定を行う必要があります。</p>
+<a class="reference internal image-reference" href="_images/tgit08.png"><img alt="_images/tgit08.png" src="_images/tgit08.png" style="width: 339.2px; height: 457.6px;" /></a>
+<p>適当なフォルダを右クリックして下さい。右クリックメニューにある「TortoiseGit -&gt; Setting」をクリックします。「General」の「Language」を「日本語(日本)」にします。</p>
+<p>これで、Windowsで TortoiseGit(日本語版)が動作する環境準備が整いました。</p>
+<a class="reference internal image-reference" href="_images/tgit09.png"><img alt="_images/tgit09.png" src="_images/tgit09.png" style="width: 620.0px; height: 348.0px;" /></a>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>レッスン 2. 動作確認<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>インストールが完了したら動作の確認をしてみましょう。
+TortoiseGitはWindowsのシェルエクステンションです。メニューを表示するためには適当なフォルダを右クリックして、メニューを開きます。</p>
+<p>右クリックメニューの「TortoiseGit -&gt; TortoiseGitについて」をクリックします。</p>
+<a class="reference internal image-reference" href="_images/tgit10.png"><img alt="_images/tgit10.png" src="_images/tgit10.png" style="width: 403.2px; height: 366.4px;" /></a>
+<p>次から早速 TortoiseGit をつかったバージョン管理を行います。</p>
+</div>
+<div class="section" id="id14">
+<h2>レッスン 3. リポジトリ用のディレクトリを作成<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>これでTortoiseGitが利用できるようになりました。まだ開発に入ることは出来ません。TortoiseGitでソースコードのバージョン管理を行うためにはリポジトリを用意する必要があります。</p>
+<p>リポジトリ: Git で管理されるソースコードやファイルを格納する場所のことです。この格納場所を作成しなければ開発に進むことはできません。通常リポジトリの作成作業はプロジェクトの最初に1回だけ実行します。</p>
+<dl class="docutils">
+<dt>注意する点</dt>
+<dd><ul class="first last simple">
+<li>Git の基礎勉強で作成したリポジトリを利用してもよいでしょう。</li>
+<li>すでに Git のリポジトリがある場合、このレッスンは飛ばして下さい。</li>
+<li>TortoiseGitはリポジトリを作成する機能があります。このチュートリアルではリポジトリの新規作成を行います。</li>
+</ul>
+</dd>
+</dl>
+<p>それでは、リポジトリを作成します。今回は以下の構成にします。</p>
+<div class="highlight-python"><pre>リポジトリ用: c:\work\tgit-repo</pre>
+</div>
+<p>「tgit-repo」フォルダを作成します。 tgit-repo を右クリックして TotroiseGitメニューの「Git ここにリポジトリを作成(Y)」をクリックします。</p>
+<a class="reference internal image-reference" href="_images/tgit11.png"><img alt="_images/tgit11.png" src="_images/tgit11.png" style="width: 376.0px; height: 148.8px;" /></a>
+<p>ここでいきなり「Bare を生成(作業ディレクトリーを作りません)」という初めて使う人にとっては意味の分からないメッセージボックスが出てきました。今回のチュートリアルでは <tt class="docutils literal"><span class="pre">tgit-repo</span></tt> を共有リポジトリとして利用する予定ですので「Bare を生成」にチェックを付けて下さい。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">今回のチュートリアルでは「tgit-repo」を共有リポジトリとして利用する予定ですので「Bare を生成」にチェックを付けて下さい。</p>
+</div>
+<div class="section" id="bare">
+<h3>「Bare を生成(作業ディレクトリーを作りません)」とは何か<a class="headerlink" href="#bare" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Bare を生成にチェックを入れるとベアリポジトリを作成することを意味します。
+ベアリポジトリは管理用のリポジトリであり、作業用ファイルが含まれません。このリポジトリは他から clone されたり、push される対象になります。</p>
+<div class="admonition note">
+<p class="first admonition-title">ノート</p>
+<p>ベアリポジトリを作成するのはどのようなときか?</p>
+<p>開発チーム共通の中央リポジトリとしてベアリポジトリを作成し、開発側は自分の端末に clone して開発を進めローカルで commit 後に中央リポジトリに push する流れが一般的です。
+Subversion を利用している方には中央リポジトリ(=共有リポジトリ)は唯一のリポジトリで有り、開発者はチェックアウトし自分の環境に作業コピーを作成します。開発チームは常に中央リポジトリに対してコミットを実施します。</p>
+<p>分散バージョン管理である Git では、リポジトリから「clone」したら、それも同じリポジトリとなり clone したリポジトリ(ローカルリポジトリ)でバージョン管理ができます。自身の開発を適宜共有リポジトリに反映(push)することで開発チームの開発が進みます。</p>
+<p class="last">このことから、ベアリポジトリを作成するタイミングはサーバ側のリモートリポジトリとして利用する場合となります。</p>
+</div>
+<p>これは、git コマンドで</p>
+<div class="highlight-python"><pre>$ git --bare init --shared</pre>
+</div>
+<p>と同じ操作になります。</p>
+<p>今回のチュートリアルでは共有リポジトリ( <tt class="docutils literal"><span class="pre">C:\work\tgit-repo</span></tt> )の clone を作成して、ローカルリポジトリを使って開発作業を進めるため、チェックを付けてください。</p>
+<a class="reference internal image-reference" href="_images/tgit12.png"><img alt="_images/tgit12.png" src="_images/tgit12.png" style="width: 606.4px; height: 336.8px;" /></a>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>レッスン 4. クローン<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>レッスン.3 で作成した中央リポジトリを利用して開発を進めるとき、中央リポジトリのクローンを自身の環境にコピーして開発を進めます。</p>
+<div class="admonition note">
+<p class="first admonition-title">ノート</p>
+<p class="last">開発メンバーで一緒に開発を進めることが想定されるとき、共有リポジトリを利用する場合が多いでしょう。共有リポジトリを利用して開発を進める場合、クローン(clone)して作業ディレクトリをローカルに作成します。
+Subversion などは「チェックアウト(checkout)」を実行していましたが、分散バージョン管理「Git」はクローン(clone)します。このクローンはサーバが保持しているデータをほぼすべてローカルにコピーします。これはプロジェクトのすべてのファイルのすべての履歴が手元にコピーされることを意味しています。他の開発者に影響を与えずにブランチを作成したりできる分散管理バージョンのメリットです。</p>
+</div>
+<div class="highlight-python"><pre>右クリックして「Git クローン(複製)」を選択します。</pre>
+</div>
+<a class="reference internal image-reference" href="_images/tgit13.png"><img alt="_images/tgit13.png" src="_images/tgit13.png" style="width: 444.0px; height: 313.6px;" /></a>
+<div class="highlight-python"><pre>URL： C:\work\tgit-repo
+ディレクトリ：C:\work\tutorial-repo</pre>
+</div>
+<dl class="docutils">
+<dt>をしています。</dt>
+<dd><ul class="first last simple">
+<li>「URL」はクローンする元のリポジトリを指定します。</li>
+<li>「ディレクトリ」は自分が開発作業に利用するローカルのフォルダを指定します。</li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/tgit14.png"><img alt="_images/tgit14.png" src="_images/tgit14.png" style="width: 408.0px; height: 273.6px;" /></a>
+<p>クローンによって作成された、作業用リポジトリをエクスプローラーで見てみます。まだリポジトリに何も登録していないためファイルはありませんが、Git の管理用ファイル(隠し属性のファイル)が作成されていることが分かります。</p>
+<a class="reference internal image-reference" href="_images/tgit15.png"><img alt="_images/tgit15.png" src="_images/tgit15.png" style="width: 506.4px; height: 275.2px;" /></a>
+<p>これで共有リポジトリ(<tt class="docutils literal"><span class="pre">C:\work\tgit-repo</span></tt>)から作業用リポジトリ(<tt class="docutils literal"><span class="pre">C:\work\tutorial-repo</span></tt>)をクローンしました。これから作業用リポジトリで開発作業を進めていきます。</p>
+</div>
+<div class="section" id="id16">
+<h2>レッスン 5. クローンしたリポジトリで作業開始<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クローンが完了しました。これからこのローカルにクローンされたリポジトリで開発を進めていくことになります。クローン元になった共有リポジトリと分けて説明するため、クローンしたローカルのリポジトリをただの「リポジトリ」や「ローカルリポジトリ」と表記します。 <tt class="docutils literal"><span class="pre">c:\work\tutorial-repo</span></tt> を見てみます。エクスプローラーから見るとフォルダに重なったチェックマークアイコンが付いているのが分かります。</p>
+<a class="reference internal image-reference" href="_images/tgit16.png"><img alt="_images/tgit16.png" src="_images/tgit16.png" style="width: 606.4px; height: 413.6px;" /></a>
+<p>これは、TortoiseGitのオーバーレイ表示機能です。アイコンの表示はリポジトリの状態を表しています。アイコンには以下の状態があります。ここではどのような状態を表示しているアイコンがあるのかを理解しておくだけでよいです。</p>
+<p>このアイコンはリポジトリに変更が加えられ、差分があることを意味しています。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">ローカルリポジトリが通常以外のアイコンの場合、ローカルリポジトリに何かしらの変更が加えられていることを意味します。この変更を共有リポジトリに反映する作業「push(プッシュ)」を行うことで共有リポジトリとローカルリポジトリが同期します。</p>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>レッスン 6. 新しいファイルを作成・追加<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ローカルリポジトリで開発を始めましょう。リポジトリには何も登録されていない状態ですので、ファイルを追加してみます。 使い慣れたエディタを使って、以下のファイルを作成します。 [git-tut01.html]を作成します。</p>
+<div class="highlight-python"><pre>&lt;html&gt;
+&lt;body&gt;
+
+ &lt;h1&gt;TortoiseGit チュートリアル&lt;/h1&gt;
+ &lt;ol&gt;
+  &lt;li&gt;クローンして&lt;/li&gt;
+  &lt;li&gt;ローカルリポジトリを作成&lt;/li&gt;
+  &lt;li&gt;開発作業&lt;/li&gt;
+  &lt;li&gt;コミット&lt;/li&gt;
+  &lt;li&gt;プッシュ&lt;/li&gt;
+ &lt;/ol&gt;
+
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<a class="reference internal image-reference" href="_images/tgit18.png"><img alt="_images/tgit18.png" src="_images/tgit18.png" style="width: 704.0px; height: 513.6px;" /></a>
+<p>リポジトリにファイルを追加する操作を行います。[git-tut01.html]を右クリックして TortoiseGit メニューから「追加」をクリックします。</p>
+<a class="reference internal image-reference" href="_images/tgit19.png"><img alt="_images/tgit19.png" src="_images/tgit19.png" style="width: 560.8px; height: 516.8px;" /></a>
+<p>「追加」を選択すると確認ダイアログが表示されます。このダイアログでバージョン管理するファイルを選択したり、解除したりすることが出来ます。
+今回は1ファイルの追加のみですので「OK」を押下します。</p>
+<a class="reference internal image-reference" href="_images/tgit20.png"><img alt="_images/tgit20.png" src="_images/tgit20.png" style="width: 304.8px; height: 229.6px;" /></a>
+<p>「OK」押下でローカルリポジトリに「<tt class="docutils literal"><span class="pre">git-tut01.html</span></tt>」が追加されました。追加終了ダイアログに「コミット」「OK」があります。
+コミットについては後で説明しますので、「OK」をクリックします。</p>
+<a class="reference internal image-reference" href="_images/tgit21.png"><img alt="_images/tgit21.png" src="_images/tgit21.png" style="width: 532.8px; height: 244.0px;" /></a>
+<p>エクスプローラーのファイルアイコンの状態が「+」(追加)に変わっています。これで新しいファイルをローカルリポジトリに追加し、コミットする準備が出来ました。 これだけでは、ローカルリポジトリに反映していません。コミットをしなければリポジトリに反映されません。</p>
+<p>もう一つ「<tt class="docutils literal"><span class="pre">yasai.txt</span></tt>」という空のテキストファイルを作成して TortoiseGit の「追加」をしました。</p>
+<a class="reference internal image-reference" href="_images/tgit22.png"><img alt="_images/tgit22.png" src="_images/tgit22.png" style="width: 613.6px; height: 456.8px;" /></a>
+<p>それでは、コミットを行います。コミットも TortoiseGit メニューから操作します。 <tt class="docutils literal"><span class="pre">tutorial.html</span></tt> と <tt class="docutils literal"><span class="pre">yasai.txt</span></tt> ファイルがあるフォルダのの空白部分を右クリックしてください。「Git コミット -&gt; &#8220;master&#8221;」が表示されますので選択します。</p>
+<a class="reference internal image-reference" href="_images/tgit27.png"><img alt="_images/tgit27.png" src="_images/tgit27.png" style="width: 610.4px; height: 452.8px;" /></a>
+<p>コミット用のウィンドウが立ち上がりますので、コミット時の変更内容を入力します。</p>
+<a class="reference internal image-reference" href="_images/tgit28.png"><img alt="_images/tgit28.png" src="_images/tgit28.png" style="width: 473.6px; height: 498.4px;" /></a>
+<a class="reference internal image-reference" href="_images/tgit29.png"><img alt="_images/tgit29.png" src="_images/tgit29.png" style="width: 471.2px; height: 499.2px;" /></a>
+<p>コミット完了画面が表示されました。これで新しいファイルを追加し、ローカルリポジトリにコミットすることが出来ました。</p>
+<div class="admonition note">
+<p class="first admonition-title">ノート</p>
+<p>コミット時のコメントは何を残すべきか?</p>
+<p class="last">コミット時に変更内容を記録するメッセージ領域が表示されます。
+コミットするときは必ずコミット内容を説明する内容を記述するようにすべきです。具体的に、機能追加なのか、バグ対応なのか、仕様変更による変更なのかを記載するべきです。
+人間の記憶はとても曖昧で1,2ヶ月前の作業について何をやっていたかは覚えていても、日々のコードレベルの修正など覚えていないーー覚えておく必要も無いのでーー場合がほとんどです。
+コミット時に修正内容を記録しておくことは、チームみんなのためであり、将来の自分のためでもアルのです。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>レッスン 7. 新しいディレクトリを作成・追加<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ディレクトリの追加やディレクトリに含まれるファイル群の追加をやっていきます。 やり方はファイルの追加と同じです。</p>
+<p>フォルダa,bとbフォルダに1つのテキストファイルを作成します。</p>
+<a class="reference internal image-reference" href="_images/tgit30.png"><img alt="_images/tgit30.png" src="_images/tgit30.png" style="width: 610.4px; height: 273.6px;" /></a>
+<p>フォルダaとフォルダbをリポジトリに追加するため、フォルダの空白領域を右クリックして「追加」コマンドを実行します。フォルダbにはテキストファイルが含まれていることに注意してください。</p>
+<p>「バージョン管理下のファイルではありません」と共にファイルリストが表示されます。</p>
+<a class="reference internal image-reference" href="_images/tgit31.png"><img alt="_images/tgit31.png" src="_images/tgit31.png" style="width: 408.0px; height: 304.8px;" /></a>
+<p>チェックボックスをチェックし「追加」します。</p>
+<a class="reference internal image-reference" href="_images/tgit32.png"><img alt="_images/tgit32.png" src="_images/tgit32.png" style="width: 533.6px; height: 244.0px;" /></a>
+<p>追加完了ダイアログで「コミット」を一緒にしてしまいます。コミット時のメッセージを忘れずに入力しましょう。</p>
+<a class="reference internal image-reference" href="_images/tgit33.png"><img alt="_images/tgit33.png" src="_images/tgit33.png" style="width: 523.2px; height: 500.0px;" /></a>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>新しいディレクトリを追加..</p>
+<p>新しいディレクトリを追加しましたが、「フォルダa」を追加することが出来ません。
+Git では空ディレクトリを「追加」することができません。フォルダb のように適当なファイルがあれば追加することが出来ますが空ディレクトリは追加できません。このあたりの操作は Subversion(SVN)とは異なるので注意が必要です。</p>
+<p class="last">正しくは Git で空ディレクトリを追加する方法はあります。調べてみて下さい。</p>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>レッスン 8. ファイルを更新<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>それでは、ファイルの中身を編集してバージョン管理システムの機能を見ていきましょう。 テキストエディタで <tt class="docutils literal"><span class="pre">git-tut01.html</span></tt> を開きます。 2行追加します。</p>
+<div class="highlight-python"><pre>&lt;li&gt;コミット時は更新内容をログとして記述&lt;/li&gt;
+&lt;li&gt;バージョン管理システムの更新&lt;/li&gt;</pre>
+</div>
+<div class="highlight-python"><pre>&lt;html&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Subversion チュートリアル&lt;/h1&gt;
+&lt;ol&gt;
+ &lt;li&gt;クローンして&lt;/li&gt;
+ &lt;li&gt;ローカルリポジトリを作成&lt;/li&gt;
+ &lt;li&gt;開発作業&lt;/li&gt;
+ &lt;li&gt;コミット&lt;/li&gt;
+ &lt;li&gt;プッシュ&lt;/li&gt;
+ &lt;li&gt;コミット時は更新内容をログとして記述&lt;/li&gt;
+ &lt;li&gt;バージョン管理システムの更新&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<p>ファイルを保存して閉じてください。 変更したファイルに表示されるオーバーレイアイコンが変わっていると思います。</p>
+<a class="reference internal image-reference" href="_images/tgit34.png"><img alt="_images/tgit34.png" src="_images/tgit34.png" style="width: 612.8px; height: 275.2px;" /></a>
+<p>編集したファイルに「!」というアイコンが付いています。これはローカルリポジトリ内のファイルに変更があったことを示しています。続いてコミットを行います。</p>
+<p>もう一度同じファイルに以下の行を追加します。</p>
+<div class="highlight-python"><pre>&lt;li&gt;ファイルの更新&lt;/li&gt;</pre>
+</div>
+<p>今編集しているファイルはリポジトリのファイルより新しい修正が追加されました。
+コミットする前にその内容を確認します。「!」アイコンの付いた <tt class="docutils literal"><span class="pre">git-tut01.html</span></tt> を右クリックして TortoiseGit メニューから「差分を表示」を選択します。</p>
+<a class="reference internal image-reference" href="_images/tgit35.png"><img alt="_images/tgit35.png" src="_images/tgit35.png" style="width: 714.4px; height: 611.2px;" /></a>
+<p>差分表示ツール[TortoiseGitMerge]が起動し、ファイルの差分を表示します。</p>
+<a class="reference internal image-reference" href="_images/tgit36.png"><img alt="_images/tgit36.png" src="_images/tgit36.png" style="width: 754.6px; height: 441.0px;" /></a>
+<p>修正内容を確認したらコミットします。更新内容のログを忘れずに入力します。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">TortoiseGitMerge で差分表示が可能ですが、外部ツールを差分表示に利用することが可能です。よく使われるツールとして、<a class="reference external" href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html">WinMerge(日本語版)</a> があります。WinMerge を利用する場合、インストール後に TortoiseGit の設定 -&gt; 差分ビューアーを変更してください。</p>
+</div>
+</div>
+<div class="section" id="id20">
+<h2>レッスン 9. ファイルを移動<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルの移動は Subversion(SVN) と違いますので注意が必要です。Git は「ファイルの移動」は履歴として残りません。Git のコマンドで <tt class="docutils literal"><span class="pre">git</span> <span class="pre">mv</span> <span class="pre">&lt;old-filename&gt;</span> <span class="pre">&lt;new-filename&gt;</span></tt> がありますがこれは</p>
+<div class="highlight-python"><pre>git mv &lt;old-filename&gt; &lt;new-filename&gt;
+
+これは、以下と同意。
+
+git rm &lt;old-filename&gt;
+git add &lt;new-filename&gt;</pre>
+</div>
+<p>このように、Git はファイルの移動に関して履歴に残さない点を知っておく必要があります。
+実際に <tt class="docutils literal"><span class="pre">yasai.txt</span></tt> を <tt class="docutils literal"><span class="pre">フォルダb</span></tt> に移動したい場合はどうするのでしょうか。</p>
+<p>Windows エクスプローラーから <tt class="docutils literal"><span class="pre">yasai.txt</span></tt> をドラッグ＆ドロップして <tt class="docutils literal"><span class="pre">フォルダb</span></tt> に移動します。</p>
+<a class="reference internal image-reference" href="_images/tgit37.png"><img alt="_images/tgit37.png" src="_images/tgit37.png" style="width: 606.4px; height: 316.0px;" /></a>
+<p>これで、ファイルの移動は完了です。
+エクスプローラーからファイルを移動した場合もコミットしなければリポジトリに反映されないことに注意してください。</p>
+<a class="reference internal image-reference" href="_images/tgit38.png"><img alt="_images/tgit38.png" src="_images/tgit38.png" style="width: 472.8px; height: 497.6px;" /></a>
+<p>コミットダイアログの「変更した項目」を見て下さい。
+削除されるファイル</p>
+<blockquote>
+<div><ul class="simple">
+<li>変更されたファイル：<tt class="docutils literal"><span class="pre">yasai.txt</span></tt></li>
+</ul>
+</div></blockquote>
+<p>追加したファイル</p>
+<blockquote>
+<div><ul class="simple">
+<li>バージョン管理下のファイルではありません：<tt class="docutils literal"><span class="pre">b/yasai.txt</span></tt></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">ファイルの移動は git rm の後に git add を実行することと同じです。</p>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>レッスン 10. ファイル名を変更<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイル名の変更は TortoiseGit のメニューから実行する必要があります。Windows エクスプローラーからファイル名の変更を行わないで下さい。</p>
+<blockquote>
+<div>git-tut01.html を git-tutorial01.html に変更しました。</div></blockquote>
+<a class="reference internal image-reference" href="_images/tgit39.png"><img alt="_images/tgit39.png" src="_images/tgit39.png" style="width: 693.6px; height: 608.0px;" /></a>
+<a class="reference internal image-reference" href="_images/tgit40.png"><img alt="_images/tgit40.png" src="_images/tgit40.png" style="width: 605.6px; height: 316.0px;" /></a>
+<p>コミットは必要ですので忘れずに実行します。</p>
+</div>
+<div class="section" id="id22">
+<h2>レッスン 11. ファイルを削除<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルの削除を実行します。 この操作も TortoiseGit メニューから実行したあとにコミットをしてください。「ファイル名の変更」、「ファイルの削除」はバージョン管理されているファイル群のみ使うことができます。</p>
+<a class="reference internal image-reference" href="_images/tgit41.png"><img alt="_images/tgit41.png" src="_images/tgit41.png" style="width: 697.6px; height: 660.8px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">ノート</p>
+<p>「削除」と「削除(ローカルを保持)」</p>
+<p class="last">TortoiseGit のメニューに2つの削除を見つけたと思います。
+「削除」はローカルのファイルを削除して、次回コミット時にリポジトリも削除します。
+「削除(ローカルを保持)」はローカルのファイルは残したままで、次回コミット時にリポジトリのファイルを削除します。</p>
+</div>
+</div>
+<div class="section" id="id23">
+<h2>レッスン 12. 履歴を確認<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>これまでの変更履歴を確認してみます。 履歴を確認する方法は、TortoiseGit 右クリックメニューの「ログを表示」を選択します。</p>
+<a class="reference internal image-reference" href="_images/tgit42.png"><img alt="_images/tgit42.png" src="_images/tgit42.png" style="width: 673.4px; height: 585.9px;" /></a>
+<a class="reference internal image-reference" href="_images/tgit43.png"><img alt="_images/tgit43.png" src="_images/tgit43.png" style="width: 571.2px; height: 584.0px;" /></a>
+<p>これまでコミットした変更内容と変更したファイル一覧が表示されます。 変更履歴毎に右クリックすると差分を表示したり、取消しを行ったりすることができます。</p>
+</div>
+<div class="section" id="push">
+<h2>レッスン 13. 共有リポジトリにプッシュ(push)する<a class="headerlink" href="#push" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>最後に共有リポジトリにローカルリポジトリの変更を反映する <tt class="docutils literal"><span class="pre">プッシュ(push)</span></tt> について説明して終わりにしたいと思います。</p>
+<p>ローカルリポジトリでファイルを追加したり、編集したりしてからコミットを実行しました。これはローカルリポジトリ内のみに反映されているため、自分以外の開発者はあなたの変更を知りません。あなたの開発した機能やバグ対応したソースコードを他の開発者にも反映する必要があります。</p>
+<div class="admonition note">
+<p class="first admonition-title">ノート</p>
+<p class="last">一番最初の「レッスン 3. リポジトリ用のディレクトリを作成」で作成した、「共有リポジトリ」がありました。
+チュートリアルでは共有リポジトリをローカルマシン(<tt class="docutils literal"><span class="pre">c:\work\tgit-repo</span></tt>)に置いていました。
+この共有リポジトリにローカルリポジトリの変更を反映します。</p>
+</div>
+<p><tt class="docutils literal"><span class="pre">c:\work\tutorial-repo</span></tt> フォルダの空白部分を右クリックして TortoiseGit の <tt class="docutils literal"><span class="pre">プッシュ(リモートへ反映)</span></tt> を選択します。</p>
+<a class="reference internal image-reference" href="_images/tgit44.png"><img alt="_images/tgit44.png" src="_images/tgit44.png" style="width: 393.6px; height: 394.4px;" /></a>
+<p>「宛先」リモート(M)：origin は共有リポジトリ(<tt class="docutils literal"><span class="pre">c:\work\tgit-repo</span></tt>)からクローンしたときに定義されています。</p>
+<p>「OK」を押下するとローカルリポジトリ(<tt class="docutils literal"><span class="pre">c:\work\tutorial-repo</span></tt>)で行ったコミットが共有リポジトリ(<tt class="docutils literal"><span class="pre">c:\work\tgit-repo</span></tt>)に反映されます。</p>
+</div>
+<div class="section" id="id24">
+<h2>レッスン 14. クローンする<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>おまけとして <tt class="docutils literal"><span class="pre">push(プッシュ)</span></tt> した共有リポジトリに自分のローカルリポジトリで実施した開発内容が反映されているかを確認します。</p>
+<p>デスクトップを右クリックして「Git クローン(複製)」を選択します。</p>
+<a class="reference internal image-reference" href="_images/tgit46.png"><img alt="_images/tgit46.png" src="_images/tgit46.png" style="width: 444.0px; height: 313.6px;" /></a>
+<p>デスクトップに <tt class="docutils literal"><span class="pre">tgit-repo</span></tt> ができました。
+フォルダを見て下さい。</p>
+<a class="reference internal image-reference" href="_images/tgit47.png"><img alt="_images/tgit47.png" src="_images/tgit47.png" style="width: 612.0px; height: 338.4px;" /></a>
+<p>レッスンで実行したファイルやフォルダが見つかりました。
+これで共有リポジトリからローカルリポジトリにクローンして、レッスンで実施したことが共有リポジトリには <tt class="docutils literal"><span class="pre">push(プッシュ)</span></tt> されていることが確認できました。</p>
+</div>
+<div class="section" id="id25">
+<h2>最後に<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>これで TortoiseGit の基本学習用チュートリアルは終了します。 よく使うコマンドを中心に説明していますが、チームでの複数メンバーによる開発や高度な機能については説明していません。</p>
+<p>このチュートリアルはいったんこれで終了します。 さて、次は何をすればよいでしょうか？
+分散バージョン管理について基礎からやりたいという場合は、こちらの <a class="reference internal" href="learning_git_firststep.html"><em>Git の基礎勉強 ~ Git によるバージョン管理 ~</em></a> が参考になるでしょう。</p>
+<p>バージョン管理のアプリケーションを理解する一番の近道は実際に使ってみることです。 あなたの開発で利用しはじめてください。あなたが所属する会社やチームでバージョン管理を使っていなかったり、別のツールを使っている場合があるかもしれません。そんなときでも、ひとりで Git / TortoiseGit を使うことは有益です。</p>
+<p>さらに、ネットには数多くの良質なコンテンツがたくさんあります。Git / TortoiseGit の専門書籍も多く出版されています。ぜひ参照して快適な開発ライフを。</p>
+<hr><p>tracpath は分散バージョン管理である git / mercurial をすぐに利用することができます。
+無料で利用することができますのでご利用ください。</p>
+<a class="reference external image-reference" href="https://secure.tracpath.com/signup/free"><img alt="60秒でアカウントを作成、すぐに git を利用する事ができます。" class="align-center" src="_images/tracpath-signup3.png" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>おすすめ</h3>
+    <br />
+    <div align="center"><a href="http://tracpath.com/" target="_blank"><img src="_images/tracpath-signup3a.png" width="220px" title="先進的な分散バージョン管理をおあたのチームに簡単導入!"></a>
+    </div>
+    <br />
+
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TortoiseGit の基礎勉強 ~ TortoiseGit によるバージョン管理 ~</a><ul>
+<li><a class="reference internal" href="#id1">はじめに</a></li>
+<li><a class="reference internal" href="#id2">レッスン 1. インストール</a><ul>
+<li><a class="reference internal" href="#msysgit">msysgit</a></li>
+<li><a class="reference internal" href="#tortoisegit">TortoiseGit</a></li>
+<li><a class="reference internal" href="#id6">TortoiseGit 日本語言語パック</a></li>
+<li><a class="reference internal" href="#id9">msysgit のインストール</a></li>
+<li><a class="reference internal" href="#id10">msysgit の環境設定</a></li>
+<li><a class="reference internal" href="#id11">TortoiseGit のインストール</a></li>
+<li><a class="reference internal" href="#id12">TortoiseGit 日本語言語パックのインストール</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13">レッスン 2. 動作確認</a></li>
+<li><a class="reference internal" href="#id14">レッスン 3. リポジトリ用のディレクトリを作成</a><ul>
+<li><a class="reference internal" href="#bare">「Bare を生成(作業ディレクトリーを作りません)」とは何か</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15">レッスン 4. クローン</a></li>
+<li><a class="reference internal" href="#id16">レッスン 5. クローンしたリポジトリで作業開始</a></li>
+<li><a class="reference internal" href="#id17">レッスン 6. 新しいファイルを作成・追加</a></li>
+<li><a class="reference internal" href="#id18">レッスン 7. 新しいディレクトリを作成・追加</a></li>
+<li><a class="reference internal" href="#id19">レッスン 8. ファイルを更新</a></li>
+<li><a class="reference internal" href="#id20">レッスン 9. ファイルを移動</a></li>
+<li><a class="reference internal" href="#id21">レッスン 10. ファイル名を変更</a></li>
+<li><a class="reference internal" href="#id22">レッスン 11. ファイルを削除</a></li>
+<li><a class="reference internal" href="#id23">レッスン 12. 履歴を確認</a></li>
+<li><a class="reference internal" href="#push">レッスン 13. 共有リポジトリにプッシュ(push)する</a></li>
+<li><a class="reference internal" href="#id24">レッスン 14. クローンする</a></li>
+<li><a class="reference internal" href="#id25">最後に</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>おすすめ</h3>
+    <br />
+    <div align="center"><a href="http://tracpath.com/" target="_blank"><img src="_images/tracpath-signup1c.png" width="220px" title="Excelによるバグ管理から脱却しよう! クラウド型バグ管理サービス"></a>
+    </div>
+    <br />
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="learning_git_firststep.html"
+                        title="前の章へ">Git の基礎勉強 ~ Git によるバージョン管理 ~</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="learning_git_extensions.html"
+                        title="次の章へ">Git Extensions の基礎勉強 ~ Git Extensions によるバージョン管理 ~</a></p>
+  <h3>このページ</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/learning_tortoisegit.txt"
+           rel="nofollow">ソースコードを表示</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="learning_git_extensions.html" title="Git Extensions の基礎勉強 ~ Git Extensions によるバージョン管理 ~"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="learning_git_firststep.html" title="Git の基礎勉強 ~ Git によるバージョン管理 ~"
+             >前へ</a> |</li>
+        <li><a href="index.html">バージョン管理システム入門(初心者向け)</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013, tracpath.
+      このドキュメントは <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3 で生成しました。
+    </div>
+
+
+  </body>
+</html>
